@@ -12,12 +12,12 @@ import lombok.Setter;
 @Setter
 public class StudentCourse {
 
-  @NotBlank
-  @Pattern(regexp = "^\\d+$")
+  //@NotBlank
+  //@Pattern(regexp = "^\\d+$")
   private String id;
 
-  @NotBlank
-  @Pattern(regexp = "^\\d+$")
+  //@NotBlank
+  //@Pattern(regexp = "^\\d+$")
   private String studentId;
 
   @NotBlank
