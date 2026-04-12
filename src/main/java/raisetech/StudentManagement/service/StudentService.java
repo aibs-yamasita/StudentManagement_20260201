@@ -10,6 +10,13 @@ import raisetech.StudentManagement.data.Student;
 import raisetech.StudentManagement.data.StudentCourse;
 import raisetech.StudentManagement.domain.StudentDetail;
 import raisetech.StudentManagement.repository.StudentRepository;
+import raisetech.StudentManagement.repository.CourseApplicationStatusRepository;
+import raisetech.StudentManagement.data.CourseApplicationStatus;
+import raisetech.StudentManagement.data.ApplicationStatus;
+
+private CourseApplicationStatusRepository statusRepository;
+
+
 
 /**
  * 受講生情報を取り扱うサービスです。受講生の検索や登録・更新処理を行います。
@@ -20,17 +27,20 @@ public class StudentService {
   private StudentRepository repository;
   private StudentConverter converter;
 
-  @Autowired
-  public StudentService(StudentRepository repository, StudentConverter converter) {
-    this.repository = repository;
-    this.converter = converter;
-  }
+@Autowired
+public StudentService(StudentRepository repository,
+      StudentConverter converter,
+      CourseApplicationStatusRepository statusRepository) {
+  this.repository = repository;
+  this.converter = converter;
+}
 
-  /**
-   * 受講生詳細の一覧検索です。全件検索を行うので、条件指定は行いません。
-   *
-   * @return 受講生詳細一覧（全件）
-   */
+
+    /**
+     * 受講生詳細の一覧検索です。全件検索を行うので、条件指定は行いません。
+     *
+     * @return 受講生詳細一覧（全件）
+     */
   public List<StudentDetail> searchStudentList() {
     List<Student> studentList = repository.search();
     List<StudentCourse> studentCourseList = repository.searchStudentCourseList();
@@ -92,4 +102,21 @@ public class StudentService {
     studentDetail.getStudentCourseList()
         .forEach(studentsCourse -> repository.updateStudentCourse(studentsCourse));
   }
+}
+
+/**
+ * 受講生IDを指定して、受講生コース情報と申込状況を取得する
+ */
+public List<StudentCourse> searchStudentCourseWithStatus(String studentId) {
+  List<StudentCourse> courses = repository.searchStudentCourse(studentId);
+
+  for (StudentCourse course : courses) {
+    CourseApplicationStatus status =
+        statusRepository.findByStudentCourseId(course.getId());
+
+    if (status != null) {
+      course.setApplicationStatus(status.getStatus());
+    }
+  }
+  return courses;
 }
