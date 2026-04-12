@@ -21,3 +21,12 @@ CREATE TABLE IF NOT EXISTS students_courses
        course_end_at TIMESTAMP
 
 );
+
+CREATE TABLE IF NOT EXISTS course_application_status (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_course_id INT NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  CONSTRAINT uq_course_status UNIQUE (student_course_id),
+  CONSTRAINT fk_course_status FOREIGN KEY (student_course_id) REFERENCES students_courses(id)
+);
+
