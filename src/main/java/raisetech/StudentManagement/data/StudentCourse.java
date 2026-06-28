@@ -12,12 +12,10 @@ import lombok.Setter;
 @Setter
 public class StudentCourse {
 
-  //@NotBlank
-  //@Pattern(regexp = "^\\d+$")
+  @Pattern(regexp = "^\\d+$")
   private String id;
 
-  //@NotBlank
-  //@Pattern(regexp = "^\\d+$")
+  @Pattern(regexp = "^\\d+$")
   private String studentId;
 
   @NotBlank
@@ -25,16 +23,4 @@ public class StudentCourse {
 
   private LocalDateTime courseStartAt;
   private LocalDateTime courseEndAt;
-
-  private ApplicationStatus applicationStatus;
-
-  public ApplicationStatus getApplicationStatus() {
-    return applicationStatus;
-  }
-
-  public void setApplicationStatus(ApplicationStatus applicationStatus) {
-    this.applicationStatus = applicationStatus;
-  }
 }
-
-

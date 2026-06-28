@@ -21,6 +21,27 @@ VALUES
 (1,'Web制作コース','2024-01-01 13:00:00','2024-05-01 19:00:00');
 
 INSERT INTO course_application_status (student_course_id, status)
+VALUES
+(1,'仮申込'),
+(2,'本申込'),
+(3,'受講中'),
+(4,'受講終了'),
+(5,'仮申込'),
+(6,'本申込'),
+(7,'受講中'),
+(8,'受講終了'),
+(9,'本申込'),
+(10,'受講中');
+
+
+
+
+
+
+
+
+
+
 SELECT id, '仮申込' FROM students_courses;
 
 
