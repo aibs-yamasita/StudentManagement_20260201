@@ -72,7 +72,7 @@ jobs:
           
           [Install]
           WantedBy = multi-user.target
-          EOL
+          EDL
           fi
           
           sudo systemctl daemon-reload
