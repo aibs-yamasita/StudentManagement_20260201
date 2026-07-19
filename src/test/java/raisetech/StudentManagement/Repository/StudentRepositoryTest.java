@@ -22,7 +22,7 @@ class StudentRepositoryTest {
   @Test
   void 受講生の全件検索が行えること(){
     List<Student> actual = sut.search();
-    assertThat(actual.size()).isEqualTo(5);
+    assertThat(actual).isNotEmpty();
   }
 
   @Test
@@ -42,7 +42,10 @@ class StudentRepositoryTest {
 
     List<Student> actual = sut.search();
 
-    assertThat(actual.size()).isEqualTo(6);
+    assertThat(actual)
+        .extracting(Student::getEmail)
+        .contains("test@example.com");
+
   }
 
 

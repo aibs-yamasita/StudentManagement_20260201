@@ -15,9 +15,18 @@ CREATE TABLE IF NOT EXISTS students
 CREATE TABLE IF NOT EXISTS students_courses
 (
        id INT AUTO_INCREMENT PRIMARY KEY,
-       student_id VARCHAR(36) NOT NULL,
+       student_id INT NOT NULL,
        course_name VARCHAR(50) NOT NULL,
        course_start_at TIMESTAMP,
        course_end_at TIMESTAMP
 
 );
+
+
+
+CREATE TABLE IF NOT EXISTS course_application_status (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_course_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL
+);
+
