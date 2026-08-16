@@ -20,6 +20,10 @@ VALUES
 (5,'AWSコース','2023-12-01 12:00:00','2024-04-01 18:00:00'),
 (1,'Web制作コース','2024-01-01 13:00:00','2024-05-01 19:00:00');
 
+INSERT INTO course_application_status (student_course_id, status)
+SELECT id, '仮申込' FROM students_courses;
+
+
 
 
 
